@@ -6,15 +6,12 @@ def canUnlockAll(boxes):
     """This function will take a list of lists and the content
        of a list will unlock other lists
     """
-    n = len(boxes)
-    unlocked = set([0])  # Start with the first box unlocked
-    keys = [0]           # Use a list as a queue to manage the boxes we can visit
-    
-    while keys:
-        current_box = keys.pop()
-        for key in boxes[current_box]:
-            if key not in unlocked and key < n:
-                unlocked.add(key)
-                keys.append(key)
-    
-    return len(unlocked) == n
+
+    keys = [0]
+    for key in keys:
+        for boxKey in boxes[key]:
+            if boxKey not in keys and boxKey < len(boxes):
+                keys.append(boxKey)
+    if len(keys) == len(boxes):
+        return True
+    return False
